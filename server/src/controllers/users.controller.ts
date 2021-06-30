@@ -10,7 +10,7 @@ class UsersController {
     try {
       const findAllUsersData: User[] = await this.userService.findAllUser();
 
-      res.status(500).json({ data: findAllUsersData, message: 'findAll' });
+      res.status(200).json({ data: findAllUsersData, message: 'findAll' });
     } catch (error) {
       next(error);
     }

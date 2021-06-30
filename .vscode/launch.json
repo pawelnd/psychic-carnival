@@ -5,16 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-node",
-            "request": "launch",
-            "name": "Launch Program",
+            "name": "Attach",
+            "port": 9229,
+            "request": "attach",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\server\\src\\controllers\\users.controller.ts",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
+            "type": "pwa-node"
         }
+    
     ]
 }

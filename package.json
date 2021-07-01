@@ -1,0 +1,25 @@
+{
+  "name": "psychic-carnival",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "client": "cd web && npm start",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawelnd/psychic-carnival.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pawelnd/psychic-carnival/issues"
+  },
+  "homepage": "https://github.com/pawelnd/psychic-carnival#readme"
+}

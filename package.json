@@ -6,12 +6,14 @@
   "dependencies": {
     "concurrently": "^6.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  },
   "scripts": {
     "client": "cd web && npm start",
     "server": "cd server && npm run dev",
     "start": "concurrently \"npm run server\" \"npm run client\""
-    },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pawelnd/psychic-carnival.git"

@@ -5,12 +5,15 @@ import { UserEntity } from '@entity/users.entity';
 import HttpException from '@exceptions/HttpException';
 import { User } from '@interfaces/users.interface';
 import { isEmpty } from '@utils/util';
+import { PostsEntity } from '../entity/posts.entity';
 
 class UserService {
   public users = UserEntity;
+  public posts = PostsEntity;
 
   public async findAllUser(): Promise<User[]> {
     const userRepository = getRepository(this.users);
+    const postsRepository = getRepository(this.posts);
     const users: User[] = await userRepository.find();
     return users;
   }

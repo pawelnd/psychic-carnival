@@ -15,6 +15,8 @@ import { dbConnection } from '@databases';
 import Routes from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
+import passport from 'passport';
+import createFacebookStrategy from './passport/createFacebookStrategy';
 
 class App {
   public app: express.Application;
@@ -26,11 +28,13 @@ class App {
     this.port = process.env.PORT || 3000;
     this.env = process.env.NODE_ENV || 'development';
 
-    this.connectToDatabase();
-    this.initializeMiddlewares();
-    this.initializeRoutes(routes);
-    this.initializeSwagger();
-    this.initializeErrorHandling();
+    this.connectToDatabase().then(() => {
+      this.initializeMiddlewares();
+      this.initializeRoutes(routes);
+      this.initializeSwagger();
+      this.initializeErrorHandling();
+      this.initializePassport();
+    });
   }
 
   public listen() {
@@ -46,9 +50,9 @@ class App {
     return this.app;
   }
 
-  private connectToDatabase() {
+  private async connectToDatabase() {
     if (this.env !== 'test') {
-      createConnection(dbConnection);
+      return createConnection(dbConnection);
     }
   }
 
@@ -71,7 +75,7 @@ class App {
 
   private initializeRoutes(routes: Routes[]) {
     routes.forEach(route => {
-      this.app.use('/', route.router);
+      this.app.use('/api', route.router);
     });
   }
 
@@ -93,6 +97,18 @@ class App {
 
   private initializeErrorHandling() {
     this.app.use(errorMiddleware);
+  }
+
+  private initializePassport() {
+    this.app.use(passport.initialize());
+    passport.use(createFacebookStrategy());
+    this.app.enable('trust proxy');
+    passport.serializeUser(function (user, done) {
+      done(null, user);
+    });
+    passport.deserializeUser(function (user, done) {
+      done(null, user);
+    });
   }
 }
 

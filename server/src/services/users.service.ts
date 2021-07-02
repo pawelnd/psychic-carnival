@@ -13,7 +13,6 @@ class UserService {
 
   public async findAllUser(): Promise<User[]> {
     const userRepository = getRepository(this.users);
-    const postsRepository = getRepository(this.posts);
     const users: User[] = await userRepository.find();
     return users;
   }

@@ -2,7 +2,7 @@ import { IsNotEmpty } from 'class-validator';
 import { Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { User } from '@interfaces/users.interface';
 
-@Entity()
+@Entity('users')
 @Unique(['email'])
 export class UserEntity implements User {
   @PrimaryGeneratedColumn()

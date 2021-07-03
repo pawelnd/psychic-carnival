@@ -18,8 +18,8 @@ class AuthRoute implements Route {
   private initializeRoutes() {
     this.router.post(`${this.path}/signup`, validationMiddleware(CreateUserDto, 'body'), this.authController.signUp);
     this.router.post(`${this.path}/login`, validationMiddleware(CreateUserDto, 'body'), this.authController.logIn);
-    this.router.get(`${this.path}/facebook`, passport.authenticate('facebook'));
-    this.router.get(`${this.path}/facebook/callback`, passport.authenticate('facebook'), this.authController.logIn);
+    this.router.get(`${this.path}/facebook`, passport.authenticate('facebook', { scope: 'email' }));
+    this.router.get(`${this.path}/facebook/callback`, passport.authenticate('facebook', { scope: 'email' }), this.authController.logIn);
     this.router.post(`${this.path}/logout`, authMiddleware, this.authController.logOut);
   }
 }

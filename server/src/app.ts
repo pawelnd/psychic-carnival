@@ -71,6 +71,8 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
   }
 
   private initializeRoutes(routes: Routes[]) {

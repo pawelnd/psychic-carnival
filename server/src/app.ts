@@ -102,7 +102,7 @@ class App {
   private initializePassport() {
     this.app.use(passport.initialize());
     passport.use(createFacebookStrategy());
-    this.app.enable('trust proxy');
+    // this.app.enable('trust proxy');
     passport.serializeUser(function (user, done) {
       done(null, user);
     });

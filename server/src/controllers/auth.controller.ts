@@ -32,7 +32,7 @@ class AuthController {
 
   public logOut = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
-      req.session.destroy(function (err) {
+      req.session.destroy(function () {
         res.redirect('/');
       });
     } catch (error) {

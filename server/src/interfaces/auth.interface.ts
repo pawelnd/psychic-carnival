@@ -11,5 +11,6 @@ export interface TokenData {
 }
 
 export interface RequestWithUser extends Request {
+  [x: string]: any;
   user: User;
 }

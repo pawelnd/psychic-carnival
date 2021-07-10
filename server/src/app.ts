@@ -17,6 +17,7 @@ import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import passport from 'passport';
 import createFacebookStrategy from './passport/createFacebookStrategy';
+import session from 'express-session';
 
 class App {
   public app: express.Application;
@@ -71,6 +72,14 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+    this.app.use(
+      session({
+        resave: false,
+        saveUninitialized: true,
+        secret: 'SECRET',
+      }),
+    );
+
     this.app.use(passport.initialize());
     this.app.use(passport.session());
   }
@@ -102,7 +111,6 @@ class App {
   }
 
   private initializePassport() {
-    this.app.use(passport.initialize());
     passport.use(createFacebookStrategy());
     // this.app.enable('trust proxy');
     passport.serializeUser(function (user, done) {

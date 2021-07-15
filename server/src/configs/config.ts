@@ -1,4 +1,6 @@
 export const config = {
+  ENV: process.env.NODE_ENV || 'development',
+
   PORT: process.env.PORT || 8080,
   PORT_ADMIN: process.env.PORT || 8081,
   MONGO_CONNECTION_STRING: process.env.MONGO_CONNECTION_STRING,

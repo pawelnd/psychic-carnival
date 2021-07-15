@@ -17,6 +17,10 @@ export class UserEntity implements User {
   password: string;
 
   @Column()
+  @IsNotEmpty()
+  salt: string;
+
+  @Column()
   @CreateDateColumn()
   createdAt: Date;
 

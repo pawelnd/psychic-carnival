@@ -2,5 +2,6 @@
   "watch": ["src"],
   "ext": ".ts,.js",
   "ignore": [],
-  "exec": "node --inspect -r ts-node/register -r tsconfig-paths/register src/server.ts"
+  "exec": "node --inspect -r ts-node/register -r tsconfig-paths/register src/server.ts",
+  "verbose": true
 }

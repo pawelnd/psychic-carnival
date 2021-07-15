@@ -1,12 +1,11 @@
 import { config } from '@/configs/config';
-import { UserEntity } from '@/entity/users.entity';
+import UserService from '@/services/users.service';
 
 import { Strategy as FacebookStrategy } from 'passport-facebook';
-import { getRepository } from 'typeorm';
 
 export default function createFacebookStrategy() {
   const { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FRONTEND_REDIRECT_BASE_URL } = config;
-  const userRepository = getRepository(UserEntity);
+  const userService = new UserService();
 
   return new FacebookStrategy(
     {
@@ -21,7 +20,7 @@ export default function createFacebookStrategy() {
         email,
         name: profile.displayName,
       };
-      const user = await userRepository.create(userPayload);
+      const user = await userService.findOrCreate(userPayload);
       done(null, await user);
     },
   );

@@ -1,11 +1,12 @@
 import './App.css';
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import MainLayout from './layouts/MainLayout/MainLayout';
 
 function App() {
   const { isLoading, data } = useQuery('repoData', () => axios.get('/api/auth/me').then((resp) => resp.data));
   return (
-    <div className="App">
+    <MainLayout>
       <header className="App-header">
         <p>isLoading: {JSON.stringify(isLoading)}</p>
         <p>Current user: {JSON.stringify(data)}</p>
@@ -16,7 +17,7 @@ function App() {
           Logout
         </a>
       </header>
-    </div>
+    </MainLayout>
   );
 }
 

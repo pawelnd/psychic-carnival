@@ -6,9 +6,22 @@ import AuthRoute from '@routes/auth.route';
 import IndexRoute from '@routes/index.route';
 import UsersRoute from '@routes/users.route';
 import validateEnv from '@utils/validateEnv';
+import { createConnection } from 'typeorm';
+import { dbConnection } from './databases';
+import { config } from './configs/config';
 
 validateEnv();
 
-const app = new App([new IndexRoute(), new UsersRoute(), new AuthRoute()]);
+const bootstrapApp = async () => {
+  const connectToDatabase = () => {
+    if (config.ENV !== 'test') {
+      return createConnection(dbConnection);
+    }
+  };
+  await connectToDatabase();
 
-app.listen();
+  const app = new App([new IndexRoute(), new UsersRoute(), new AuthRoute()]);
+  app.listen();
+};
+
+bootstrapApp();

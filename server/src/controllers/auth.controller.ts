@@ -43,7 +43,6 @@ class AuthController {
   public me = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
       const userData: User = req.user;
-      console.log(userData);
       res.status(200).json(userData);
     } catch (error) {
       next(error);

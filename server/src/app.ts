@@ -10,14 +10,13 @@ import morgan from 'morgan';
 import compression from 'compression';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
-import { createConnection } from 'typeorm';
-import { dbConnection } from '@databases';
 import Routes from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import passport from 'passport';
 import createFacebookStrategy from './passport/createFacebookStrategy';
 import session from 'express-session';
+import { config } from './configs/config';
 
 class App {
   public app: express.Application;
@@ -26,35 +25,25 @@ class App {
 
   constructor(routes: Routes[]) {
     this.app = express();
-    this.port = process.env.PORT || 3000;
-    this.env = process.env.NODE_ENV || 'development';
 
-    this.connectToDatabase().then(() => {
-      this.initializeMiddlewares();
-      this.initializeRoutes(routes);
-      this.initializeSwagger();
-      this.initializeErrorHandling();
-      this.initializePassport();
-    });
+    this.initializeMiddlewares();
+    this.initializeRoutes(routes);
+    this.initializeSwagger();
+    this.initializeErrorHandling();
+    this.initializePassport();
   }
 
   public listen() {
-    this.app.listen(this.port, () => {
+    this.app.listen(config.PORT, () => {
       logger.info(`=================================`);
-      logger.info(`======= ENV: ${this.env} =======`);
-      logger.info(`🚀 App listening on the port ${this.port}`);
+      logger.info(`======= ENV: ${config.ENV} =======`);
+      logger.info(`🚀 App listening on the port ${config.PORT}`);
       logger.info(`=================================`);
     });
   }
 
   public getServer() {
     return this.app;
-  }
-
-  private async connectToDatabase() {
-    if (this.env !== 'test') {
-      return createConnection(dbConnection);
-    }
   }
 
   private initializeMiddlewares() {

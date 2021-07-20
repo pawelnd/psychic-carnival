@@ -10,7 +10,7 @@ const StyledFullPageSPinner = styled(CircularProgress)`
   left: 50%;
 `;
 interface AuthState {
-  loading: boolean;
+  isLoading: boolean;
   user: any;
   isLoggedIn: boolean;
   logout: () => void;
@@ -20,12 +20,12 @@ const AuthContext = React.createContext<any>(undefined);
 type ProvideAuthProps = React.PropsWithChildren<{}>;
 
 export function ProvideAuth({ children }: ProvideAuthProps) {
-  const { data, isLoading } = useQuery<any>('me', () => axios.get(`/api/auth/me`));
+  const { data, isLoading } = useQuery<any>('me', () => axios.get('/api/auth/me'));
 
   const state = {
-    isLoading,
     user: data?.me,
-    isLoggedIn: !!data?.me
+    isLoggedIn: !!data?.me,
+    isLoading
   };
 
   return <AuthContext.Provider value={state}>{isLoading ? <StyledFullPageSPinner /> : children}</AuthContext.Provider>;

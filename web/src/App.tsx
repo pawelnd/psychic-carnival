@@ -2,21 +2,24 @@ import './App.css';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import MainLayout from './layouts/MainLayout/MainLayout';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { LoginPage } from './pages/LoginPage';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
+import routes from './routes';
+import { DashboardPage } from './pages/DashboardPage';
+import { PrivatePage } from './pages/PrivatePage';
 
 function App() {
-  const { isLoading, data } = useQuery('repoData', () => axios.get('/api/auth/me').then((resp) => resp.data));
+  const { data } = useQuery('repoData', () => axios.get('/api/auth/me').then((resp) => resp.data));
   return (
     <MainLayout>
-      <header className="App-header">
-        <p>isLoading: {JSON.stringify(isLoading)}</p>
-        <p>Current user: {JSON.stringify(data)}</p>
-        <a className="App-link" href="/api/auth/facebook">
-          Login
-        </a>
-        <a className="App-link" href="/api/auth/logout">
-          Logout
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route path={routes.LOGIN} component={LoginPage} />
+          <PrivateRoute exact path={routes.MAIN} component={DashboardPage} />
+          <PrivateRoute path={routes.DASHBOARD} component={PrivatePage} />
+        </Switch>
+      </Router>
     </MainLayout>
   );
 }

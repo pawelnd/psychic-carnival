@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ProvideAuth } from './lib/auth';
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ProvideAuth>
+        <App />
+      </ProvideAuth>
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root')

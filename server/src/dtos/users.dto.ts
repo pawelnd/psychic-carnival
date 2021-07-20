@@ -5,7 +5,8 @@ export class CreateUserDto {
   public email: string;
 
   @IsString()
-  public password: string;
+  public name: string;
 
-  public encryptionKey: string;
+  @IsString()
+  public password?: string;
 }

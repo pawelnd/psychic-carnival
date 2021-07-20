@@ -16,11 +16,13 @@ export default function createFacebookStrategy() {
     },
     async (accessToken, refreshToken, profile, done) => {
       const email = profile?.emails[0]?.value as string;
-      const userPayload = {
-        email,
-        name: profile.displayName,
-      };
-      const user = await userService.findOrCreate(userPayload);
+      const user =
+        (await userService.find({ email })) ||
+        userService.createUser({
+          email,
+          name: profile.displayName,
+        });
+
       done(null, await user);
     },
   );

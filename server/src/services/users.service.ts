@@ -23,8 +23,8 @@ class UserService {
     return findUser;
   }
 
-  findOrCreate(userPayload: Partial<User>) {
-    throw new Error('Method not implemented.');
+  async find(userPayload: Partial<User>) {
+    return await this.userRepository.findOne({ ...userPayload });
   }
 
   public async findUserByEmail(email: string): Promise<User> {
@@ -37,9 +37,13 @@ class UserService {
     const findUser: User = await this.userRepository.findOne({ where: { email: userData.email } });
     if (findUser) throw new HttpException(409, `You're email ${userData.email} already exists`);
 
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const salt = await bcrypt.genSalt();
-    const createUserData: User = await this.userRepository.save({ ...userData, password: hashedPassword, salt });
+    let user: User = { ...userData };
+    if (userData.password) {
+      const hashedPassword = await bcrypt.hash(userData.password, 10);
+      const salt = await bcrypt.genSalt();
+      user = { ...user, password: hashedPassword, salt };
+    }
+    const createUserData: User = await this.userRepository.save(user);
 
     return createUserData;
   }
@@ -50,8 +54,7 @@ class UserService {
     const findUser: User = await this.userRepository.findOne({ where: { id: userId } });
     if (!findUser) throw new HttpException(409, "You're not user");
 
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
-    await this.userRepository.update(userId, { ...userData, password: hashedPassword });
+    await this.userRepository.update(userId, { ...userData });
 
     const updateUser: User = await this.userRepository.findOne({ where: { id: userId } });
     return updateUser;

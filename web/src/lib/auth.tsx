@@ -23,10 +23,12 @@ export function ProvideAuth({ children }: ProvideAuthProps) {
   const { data, isLoading } = useQuery<any>('me', () => axios.get('/api/auth/me'));
 
   const state = {
-    user: data?.me,
-    isLoggedIn: !!data?.me,
+    user: data?.data,
+    isLoggedIn: !!data?.data,
     isLoading
   };
+
+  console.log(state);
 
   return <AuthContext.Provider value={state}>{isLoading ? <StyledFullPageSPinner /> : children}</AuthContext.Provider>;
 }

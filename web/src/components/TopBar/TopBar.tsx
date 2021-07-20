@@ -44,7 +44,7 @@ export const TopBar = () => {
         <StyledNavigation>
           <ul>
             {naviagation.map((x) => (
-              <li>
+              <li key={x}>
                 <a>{x}</a>
               </li>
             ))}

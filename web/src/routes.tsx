@@ -1,6 +1,6 @@
 const routes = {
   MAIN: '/',
-  DASHBOARD: '/dashboard',
+  PRIVATE: '/private',
   LOGIN: '/login'
 };
 

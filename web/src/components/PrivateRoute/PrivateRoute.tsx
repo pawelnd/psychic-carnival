@@ -7,8 +7,6 @@ export const PrivateRoute: React.FC<RouteProps> = (props: RouteProps) => {
   const { isLoggedIn, isLoading } = useAuth();
   const { path, exact, component } = props;
 
-  console.log(isLoggedIn, isLoading);
-
   if (isLoading) {
     return null;
   }

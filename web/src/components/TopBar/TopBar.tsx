@@ -58,7 +58,7 @@ export const TopBar = () => {
           <a href="#">
             <FaShoppingBasket />
           </a>
-          {isLoggedIn && { user }}
+          {isLoggedIn && JSON.stringify(user)}
         </StyledCornentActions>
       </Flex>
     </Flex>

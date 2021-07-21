@@ -14,8 +14,7 @@ function App() {
         <Switch>
           <Route exact path={routes.MAIN} component={DashboardPage} />
           <Route path={routes.LOGIN} component={LoginPage} />
-          <PrivateRoute exact path={routes.MAIN} component={DashboardPage} />
-          <PrivateRoute path={routes.DASHBOARD} component={PrivatePage} />
+          <PrivateRoute path={routes.PRIVATE} component={PrivatePage} />
         </Switch>
       </Router>
     </MainLayout>

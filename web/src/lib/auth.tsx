@@ -22,13 +22,12 @@ type ProvideAuthProps = React.PropsWithChildren<{}>;
 export function ProvideAuth({ children }: ProvideAuthProps) {
   const { data, isLoading } = useQuery<any>('me', () => axios.get('/api/auth/me'));
 
+  const loggedUser = data?.data;
   const state = {
-    user: data?.data,
-    isLoggedIn: !!data?.data,
+    user: loggedUser,
+    isLoggedIn: !!loggedUser,
     isLoading
   };
-
-  console.log(state);
 
   return <AuthContext.Provider value={state}>{isLoading ? <StyledFullPageSPinner /> : children}</AuthContext.Provider>;
 }

@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import React from 'react';
 import { TopBar } from '../../components/TopBar/TopBar';
 
-const MainLayout = ({ children }: any) => {
+const MainLayout: React.FC = ({ children }) => {
   return (
     <Flex direction="column" align="center" m="0 auto">
       <TopBar />

@@ -9,15 +9,15 @@ import { PrivatePage } from './pages/PrivatePage';
 
 function App() {
   return (
-    <MainLayout>
-      <Router>
+    <Router>
+      <MainLayout>
         <Switch>
-          <Route exact path={routes.MAIN} component={DashboardPage} />
+          <PrivateRoute exact path={routes.MAIN} component={DashboardPage} />
           <Route path={routes.LOGIN} component={LoginPage} />
           <PrivateRoute path={routes.PRIVATE} component={PrivatePage} />
         </Switch>
-      </Router>
-    </MainLayout>
+      </MainLayout>
+    </Router>
   );
 }
 

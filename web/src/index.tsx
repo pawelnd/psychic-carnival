@@ -5,16 +5,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ProvideAuth } from './lib/auth';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from './theme/theme';
+import { BrowserRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ProvideAuth>
-        <App />
-      </ProvideAuth>
-    </QueryClientProvider>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <ProvideAuth>
+          <ChakraProvider theme={theme}>
+            <App />
+          </ChakraProvider>
+        </ProvideAuth>
+      </QueryClientProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

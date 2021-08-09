@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "concurrently": "^6.2.0"
+    "concurrently": "^6.2.0",
+    "react-icons": "^4.2.0"
   },
   "devDependencies": {
     "prettier": "^2.3.2"

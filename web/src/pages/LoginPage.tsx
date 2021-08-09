@@ -1,19 +1,17 @@
+import { Flex, Button } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
+import {FaFacebook} from "react-icons/all";
+import {useHistory} from "react-router";
 
 export const LoginPage = () => {
-  const { isLoading, data } = useQuery('repoData', () => axios.get('/api/auth/me').then((resp) => resp.data));
+  let history = useHistory();
   return (
-    <header className="App-header">
-      <p>isLoading: {JSON.stringify(isLoading)}</p>
-      <p>Current user: {JSON.stringify(data)}</p>
-      <a className="App-link" href="/api/auth/facebook">
-        Login
-      </a>
-      <a className="App-link" href="/api/auth/logout">
-        Logout
-      </a>
-    </header>
+    <Flex direction="column" margin="5">
+      <Button onClick={()=> window.location.href = '/api/auth/facebook'} colorScheme="facebook" leftIcon={<FaFacebook />}>
+        Login with Facebook
+      </Button>
+    </Flex>
   );
 };

@@ -68,15 +68,15 @@ const List = () => {
 
 }
 export const DashboardPage = () => {
-  return <Container>
-    <Flex direction="column">
-      <Box>
-        <Heading>Moje</Heading>
-        <HStack margin={10}><List></List><List></List><List></List><List></List></HStack>
-      </Box>
-      <Box>
-        <Heading>Udostępnione</Heading>
-      </Box>
-    </Flex>
-  </Container>;
+  return <Flex direction="column">
+    <Box>
+      <Heading>Moje</Heading>
+      <hr />
+      <HStack margin={10}><List /><List /><List /><List /></HStack>
+    </Box>
+    <Box>
+      <Heading>Udostępnione</Heading>      <hr />
+      <HStack margin={10}><List /><List /><List /><List /></HStack>
+    </Box>
+  </Flex>;
 };

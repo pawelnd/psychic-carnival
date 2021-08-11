@@ -1,15 +1,13 @@
 export const Button = {
-    baseStyle: {},
-    sizes: {},
     variants: {
-        primary: () => ({
+        primary: {
             bg: "primary",
-            color: "white",
-            _hover: {
-                bg: 'secondary',
-                boxShadow: "md",
-            },
-        }),
-        defaultProps: {},
-    }
-};
+            _hover:{
+                bg: "secondary"
+            }
+        }
+    },
+    defaultProps: {
+        size: "sm",
+    },
+}

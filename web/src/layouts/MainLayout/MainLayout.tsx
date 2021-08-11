@@ -4,9 +4,9 @@ import { TopBar } from '../../components/TopBar/TopBar';
 
 const MainLayout: React.FC = ({ children }) => {
   return (
-    <Box width={'full'}>
+    <Box width={'full'} bgColor={"gray.50"} minH={'100vh'}>
       <TopBar />
-      <Container>{children}</Container>
+      <Container maxW={"container.xl"}>{children}</Container>
     </Box>
   );
 };

@@ -16,7 +16,7 @@ export const TopBar = () => {
         {isLoggedIn && <Box>Witaj {user?.name}</Box>}
         <Box>
           {isLoggedIn && (
-            <Button bg="primary" onClick={() => logout()}>
+            <Button onClick={() => logout()}>
               Wyloguj
             </Button>
           )}

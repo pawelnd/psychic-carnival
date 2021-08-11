@@ -1,7 +1,7 @@
-import { extendTheme } from '@chakra-ui/react';
+import {extendTheme, ThemeConfig} from '@chakra-ui/react';
 import {Button} from "./Button";
 
-const theme = extendTheme({
+const config = {
   fonts: {
     heading: 'Montserrat',
     body: 'Montserrat',
@@ -18,7 +18,7 @@ const theme = extendTheme({
   },
   components: {
     Button
-  },
-  backGroundColor: 'red.900'
-});
+  }
+}
+const theme = extendTheme(config);
 export default theme;

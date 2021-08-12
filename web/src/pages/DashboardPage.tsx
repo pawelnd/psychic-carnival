@@ -1,5 +1,5 @@
 import React from 'react';
-import {Badge, Box, Container, Flex, Heading, HStack, Image} from "@chakra-ui/react";
+import {Badge, Box, Container, Flex, Grid, Heading, HStack, Image, SimpleGrid} from "@chakra-ui/react";
 import {FaStar} from "react-icons/all";
 
 const List = () => {
@@ -72,11 +72,7 @@ export const DashboardPage = () => {
     <Box>
       <Heading>Moje</Heading>
       <hr />
-      <HStack margin={10}><List /><List /><List /><List /></HStack>
-    </Box>
-    <Box>
-      <Heading>Udostępnione</Heading>      <hr />
-      <HStack margin={10}><List /><List /><List /><List /></HStack>
+      <Grid templateColumns="repeat(3, 1fr)" gap={6}><List /><List /><List /><List /></Grid>
     </Box>
   </Flex>;
 };

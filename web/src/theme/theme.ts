@@ -1,7 +1,10 @@
-import {extendTheme, ThemeConfig} from '@chakra-ui/react';
+import {extendTheme, withDefaultColorScheme} from '@chakra-ui/react';
 import {Button} from "./Button";
 
+
+
 const config = {
+  ...withDefaultColorScheme({ colorScheme: 'whattsap' }),
   fonts: {
     heading: 'Montserrat',
     body: 'Montserrat',
@@ -12,9 +15,6 @@ const config = {
     highlight: '#94317A',
     warning: '#5F4684',
     danger: '#344C75'
-  },
-  defaultProps: {
-    variant: 'primary'
   },
   components: {
     Button

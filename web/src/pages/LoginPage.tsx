@@ -1,27 +1,27 @@
 import { Flex, Button, Box, HStack, Heading, VStack, Badge } from '@chakra-ui/react';
 import React from 'react';
-import {FaFacebook, FaLock} from "react-icons/all";
-import {useHistory} from "react-router";
+import { FaFacebook, FaLock } from 'react-icons/all';
 
 export const LoginPage = () => {
-  let history = useHistory();
+
   return (
-    <Flex direction="column" alignItems={'center'} margin="5" >
-        <Box maxW="md" borderWidth="1px" borderRadius="lg" overflow="hidden" backgroundColor={"white"} padding={'5'} minH={'300px'} minW={'350px'}>
-           <VStack justifyContent={'space-between'} height={'full'}>
-               <Badge variant={'primary'}>
-                   <FaLock size={30} />
-               </Badge>
-               <Heading>Logowanie</Heading>
-
-               <Button onClick={()=> window.location.href = '/api/auth/facebook'} size={'md'} colorScheme="facebook" leftIcon={<FaFacebook />}>
-                   Login with Facebook
-               </Button>
-               <hr />
-
-           </VStack>
-
-        </Box>
+    <Flex direction="column" alignItems={'center'} justifyContent={'center'} margin="20">
+      <Box backgroundColor={'primary'} borderRadius={'90'} padding={'5'} color={'white'} margin={'-5'} zIndex={1}>
+        <FaLock size={20} />
+      </Box>
+      <Box maxW="md" borderWidth="1px" borderRadius="lg" overflow="hidden"
+           backgroundColor={'white'} padding={'10'} minH={'300px'} minW={'350px'}
+           d={'flex'} alignItems={'center'} justifyContent={'center'}
+      >
+        <VStack justifyContent={'space-between'} height={'full'} spacing={'7'}>
+          <Heading>Logowanie</Heading>
+          <hr />
+          <Button onClick={() => (window.location.href = '/api/auth/facebook')} size={'md'} variant={'solid'} colorScheme="facebook" leftIcon={<FaFacebook />}>
+            Login with Facebook
+          </Button>
+          <hr />
+        </VStack>
+      </Box>
     </Flex>
   );
 };

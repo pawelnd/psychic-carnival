@@ -6,8 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ProvideAuth } from './lib/auth';
 import { ChakraProvider } from '@chakra-ui/react';
-import theme from './theme/theme';
 import { BrowserRouter } from 'react-router-dom';
+import theme from './theme/theme';
 
 const queryClient = new QueryClient();
 

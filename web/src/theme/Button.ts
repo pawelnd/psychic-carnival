@@ -9,5 +9,6 @@ export const Button = {
     },
     defaultProps: {
         size: "sm",
+        variant: "primary"
     },
 }

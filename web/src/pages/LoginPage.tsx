@@ -1,9 +1,11 @@
 import { Flex, Button, Box, HStack, Heading, VStack, Badge } from '@chakra-ui/react';
 import React from 'react';
 import { FaFacebook, FaLock } from 'react-icons/all';
+import {useAuth} from "../lib/auth";
 
 export const LoginPage = () => {
-
+    let {user} = useAuth();
+    console.log(user)
   return (
     <Flex direction="column" alignItems={'center'} justifyContent={'center'} margin="20">
       <Box backgroundColor={'primary'} borderRadius={'90'} padding={'5'} color={'white'} margin={'-5'} zIndex={1}>
@@ -17,9 +19,13 @@ export const LoginPage = () => {
           <Heading>Logowanie</Heading>
           <hr />
           <Button onClick={() => (window.location.href = '/api/auth/facebook')} size={'md'} variant={'solid'} colorScheme="facebook" leftIcon={<FaFacebook />}>
-            Login with Facebook
+            Zaloguj przez Facebook
           </Button>
           <hr />
+            <Box>LUB</Box>
+            <Box>
+                <Button>Kontynuuj jako  <b> {user.name}</b></Button>
+            </Box>
         </VStack>
       </Box>
     </Flex>

@@ -72,7 +72,7 @@ export const DashboardPage = () => {
     <Box>
       <Heading>Moje</Heading>
       <hr />
-      <SimpleGrid columns={[1, 2, 3]} gap={6}><List /><List /><List /><List /></SimpleGrid>
+      <SimpleGrid columns={[1, 2, 3,4 ]} gap={6}><List /><List /><List /><List /></SimpleGrid>
     </Box>
   </Flex>;
 };

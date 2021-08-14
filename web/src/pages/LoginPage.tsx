@@ -2,9 +2,11 @@ import { Box, Button, Flex, Heading, VStack } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
 import { FaFacebook, FaLock } from 'react-icons/all';
 import { useAuth } from '../lib/auth';
+import { useHistory } from 'react-router';
 
 export const LoginPage = () => {
   let { user, isLoggedIn } = useAuth();
+  let history = useHistory();
   const loggedUserComponentPart = useMemo(
     () => () => {
       const label = `Kontynuuj jako ${user.name}`;
@@ -12,7 +14,7 @@ export const LoginPage = () => {
         <>
           <Box>LUB</Box>
           <Box>
-            <Button>{label}</Button>
+            <Button onClick={() => history.push('')}>{label}</Button>
           </Box>
         </>
       );

@@ -1,8 +1,7 @@
 import { Box, Button, Flex } from '@chakra-ui/react';
 import { useAuth } from '../../lib/auth';
 import React from 'react';
-import { FaShopify } from 'react-icons/all';
-import Logo from "../Logo/Logo";
+import Logo from '../Logo/Logo';
 
 export const TopBar = () => {
   const { isLoggedIn, user, logout } = useAuth();
@@ -11,13 +10,7 @@ export const TopBar = () => {
       <Flex align="center" justify="space-between" w="container.xl">
         <Logo />
         {isLoggedIn && <Box>Witaj {user?.name}</Box>}
-        <Box>
-          {isLoggedIn && (
-            <Button  onClick={() => logout()}>
-              Wyloguj
-            </Button>
-          )}
-        </Box>
+        <Box>{isLoggedIn && <Button onClick={() => logout()}>Wyloguj</Button>}</Box>
       </Flex>
     </Flex>
   );

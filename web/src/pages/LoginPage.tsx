@@ -19,7 +19,7 @@ export const LoginPage = () => {
         </>
       );
     },
-    user
+    [user, history]
   );
   return (
     <Flex direction="column" alignItems={'center'} justifyContent={'center'} margin="20">

@@ -1,6 +1,6 @@
-import { Badge, Box, Image } from '@chakra-ui/react';
-import { FaStar } from 'react-icons/all';
+import { Box, Button, Image, List, ListIcon, ListItem } from '@chakra-ui/react';
 import React from 'react';
+import { FaEdit, FaRegTrashAlt, MdCheckCircle } from 'react-icons/all';
 
 export const ListSummary = () => {
   const property = {
@@ -14,40 +14,26 @@ export const ListSummary = () => {
     rating: 4
   };
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image src={property.imageUrl} alt={property.imageAlt} />
-
+    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" p={3}>
+      <Box d={'flex'} justifyContent={'space-between'}>
+        <h1>Nazwa</h1>
+        <Box ml="2" color="gray.600" d={'flex'} justifyContent={'flex-end'}>
+          <Button ml={1}>
+            <FaEdit />
+          </Button>
+          <Button ml={1}>
+            <FaRegTrashAlt />
+          </Button>
+        </Box>
+      </Box>
+      <Image pt={3} src={property.imageUrl} alt={property.imageAlt} />
       <Box p="6">
-        <Box d="flex" alignItems="baseline">
-          <Badge borderRadius="full" px="2" colorScheme="teal">
-            New
-          </Badge>
-          <Box color="gray.500" fontWeight="semibold" letterSpacing="wide" fontSize="xs" textTransform="uppercase" ml="2">
-            {property.beds} beds &bull; {property.baths} baths
-          </Box>
-        </Box>
-
-        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-          {property.title}
-        </Box>
-
-        <Box>
-          {property.formattedPrice}
-          <Box as="span" color="gray.600" fontSize="sm">
-            / wk
-          </Box>
-        </Box>
-
-        <Box d="flex" mt="2" alignItems="center">
-          {Array(5)
-            .fill('')
-            .map((_, i) => (
-              <FaStar key={i} color={i < property.rating ? 'teal.500' : 'gray.300'} />
-            ))}
-          <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            {property.reviewCount} reviews
-          </Box>
-        </Box>
+        <List spacing={3}>
+          <ListItem>
+            <ListIcon as={MdCheckCircle} color={'primary'} />
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit
+          </ListItem>
+        </List>
       </Box>
     </Box>
   );

@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import React from 'react';
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
+import { useMutation } from 'react-query';
+import axios from 'axios';
 
 interface Props {
   onCancel: () => void;
@@ -13,13 +15,10 @@ export const NewListForm = (props: Props) => {
     formState: { errors, isSubmitting }
   } = useForm();
 
+  const mutation = useMutation((newTodo) => axios.post('/api/lists', newTodo));
+
   function onSubmit(values) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve(null);
-      }, 30000);
-    });
+    return mutation.mutate(values);
   }
 
   return (

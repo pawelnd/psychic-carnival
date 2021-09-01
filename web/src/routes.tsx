@@ -1,7 +1,8 @@
 const routes = {
   MAIN: '/',
   PRIVATE: '/private',
-  LOGIN: '/login'
+  LOGIN: '/login',
+  LIST: '/list'
 };
 
 export default routes;

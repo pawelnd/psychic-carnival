@@ -4,7 +4,10 @@ export const Button = {
       bg: 'primary',
       color: 'white',
       _hover: {
-        bg: 'secondary'
+        bg: 'secondary',
+        _disabled: {
+          bg: 'secondary'
+        }
       }
     }
   },

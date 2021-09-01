@@ -18,7 +18,7 @@ export const NewListForm = (props: Props) => {
       setTimeout(() => {
         alert(JSON.stringify(values, null, 2));
         resolve(null);
-      }, 3000);
+      }, 30000);
     });
   }
 
